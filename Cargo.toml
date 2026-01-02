@@ -1,0 +1,19 @@
+[package]
+name = "wstui"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Word Search (2D & 3D) TUI"
+keywords = ["word search", "tui", "terminal", "puzzle"]
+
+[dependencies]
+chrono = "0.4.42"
+color-eyre = "0.6.5"
+crossterm = "0.29.0"
+directories = "6.0.0"
+rand = "0.9.2"
+ratatui = "0.29.0"
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = "1.0.148"
+strum = "0.27.2"
+tui-big-text = "0.7.3"
