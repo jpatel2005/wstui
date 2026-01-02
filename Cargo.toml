@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 license = "MIT"
 description = "Word Search (2D & 3D) TUI"
-keywords = ["word search", "tui", "terminal", "puzzle"]
+keywords = ["word_search", "tui", "terminal", "puzzle"]
 
 [dependencies]
 chrono = "0.4.42"
