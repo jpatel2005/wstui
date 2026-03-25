@@ -77,7 +77,8 @@ fn run(mut terminal: DefaultTerminal, app: &mut App) -> Result<()> {
                                         }
                                         PopupFocus::SizeSelector => {
                                             app.puzzle_size = match app.puzzle_size {
-                                                PuzzleSize::Small => PuzzleSize::Large,
+                                                PuzzleSize::Tiny => PuzzleSize::Large,
+                                                PuzzleSize::Small => PuzzleSize::Tiny,
                                                 PuzzleSize::Medium => PuzzleSize::Small,
                                                 PuzzleSize::Large => PuzzleSize::Medium,
                                             };
@@ -95,9 +96,10 @@ fn run(mut terminal: DefaultTerminal, app: &mut App) -> Result<()> {
                                         }
                                         PopupFocus::SizeSelector => {
                                             app.puzzle_size = match app.puzzle_size {
+                                                PuzzleSize::Tiny => PuzzleSize::Small,
                                                 PuzzleSize::Small => PuzzleSize::Medium,
                                                 PuzzleSize::Medium => PuzzleSize::Large,
-                                                PuzzleSize::Large => PuzzleSize::Small,
+                                                PuzzleSize::Large => PuzzleSize::Tiny,
                                             };
                                         }
                                         PopupFocus::Buttons => if app.popup_button_index == 0 { app.popup_button_index = 1; } else { app.popup_button_index = 0; },

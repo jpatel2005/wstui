@@ -190,18 +190,21 @@ fn render_new_puzzle_popup(frame: &mut Frame, app: &App) {
     frame.render_widget(size_block, chunks[3]);
 
     let size_layout = Layout::horizontal([
+        Constraint::Fill(1),
         Constraint::Fill(1), 
         Constraint::Fill(1), 
         Constraint::Fill(1)
     ]).spacing(1).split(size_inner);
-    let (style_s, style_m, style_l) = match app.puzzle_size {
-        PuzzleSize::Small => (active_pill_style, inactive_text_style, inactive_text_style),
-        PuzzleSize::Medium => (inactive_text_style, active_pill_style, inactive_text_style),
-        PuzzleSize::Large => (inactive_text_style, inactive_text_style, active_pill_style),
+    let (style_t, style_s, style_m, style_l) = match app.puzzle_size {
+        PuzzleSize::Tiny => (active_pill_style, inactive_text_style, inactive_text_style, inactive_text_style),
+        PuzzleSize::Small => (inactive_text_style,  active_pill_style, inactive_text_style, inactive_text_style),
+        PuzzleSize::Medium => (inactive_text_style, inactive_text_style, active_pill_style, inactive_text_style),
+        PuzzleSize::Large => (inactive_text_style, inactive_text_style, inactive_text_style, active_pill_style),
     };
-    frame.render_widget(Paragraph::new("Small").centered().style(style_s), size_layout[0]);
-    frame.render_widget(Paragraph::new("Medium").centered().style(style_m), size_layout[1]);
-    frame.render_widget(Paragraph::new("Large").centered().style(style_l), size_layout[2]);
+    frame.render_widget(Paragraph::new("Tiny").centered().style(style_t), size_layout[0]);
+    frame.render_widget(Paragraph::new("Small").centered().style(style_s), size_layout[1]);
+    frame.render_widget(Paragraph::new("Medium").centered().style(style_m), size_layout[2]);
+    frame.render_widget(Paragraph::new("Large").centered().style(style_l), size_layout[3]);
     // BUTTONS
     let btn_area = center(chunks[5], Constraint::Length(30), Constraint::Length(1));
     let btn_layout = Layout::horizontal([

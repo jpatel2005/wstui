@@ -52,6 +52,7 @@ pub enum PuzzleType {
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum PuzzleSize {
+    Tiny,
     Small,
     Medium,
     Large,
@@ -200,6 +201,7 @@ pub fn new() -> Self {
 
     fn generate_grid(&mut self) {
         let size = match self.puzzle_size {
+            PuzzleSize::Tiny => match self.puzzle_type { PuzzleType::TwoD => 10, PuzzleType::ThreeD => 6 },
             PuzzleSize::Small => match self.puzzle_type { PuzzleType::TwoD => 20, PuzzleType::ThreeD => 8 },
             PuzzleSize::Medium => match self.puzzle_type { PuzzleType::TwoD => 30, PuzzleType::ThreeD => 10 },
             PuzzleSize::Large => match self.puzzle_type { PuzzleType::TwoD => 40, PuzzleType::ThreeD => 12 },
@@ -614,6 +616,7 @@ pub fn new() -> Self {
         filepath.push(format!("puzzle-{}.json", timestamp));
         let elapsed = if let Some(start) = self.start_time { start.elapsed().as_secs() } else { 0 };
         let size_str = match self.puzzle_size {
+            PuzzleSize::Tiny => "Tiny",
             PuzzleSize::Small => "Small",
             PuzzleSize::Medium => "Medium",
             PuzzleSize::Large => "Large",
@@ -699,6 +702,7 @@ pub fn new() -> Self {
         self.finish_time = None;
         // resize size
         self.puzzle_size = match save_data.puzzle_size.as_str() {
+            "Tiny" => PuzzleSize::Tiny,
             "Small" => PuzzleSize::Small,
             "Large" => PuzzleSize::Large,
             _ => PuzzleSize::Medium,
